@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ThemeSwitch from "@/components/theme-switch";
 import { generalData } from "@/data/general";
-import { contentData } from "@/data/content";
+import { contentData, Qualifications } from "@/data/content";
 import type { Content } from "@/data/content";
 
 type ContentProps = Content;
@@ -9,24 +9,38 @@ type ContentProps = Content;
 const Content: React.FC<ContentProps> = ({ title, items }) => {
   return (
     <section className="my-14 text-sm">
-      <h3 className="mb-6">{title}</h3>
+      <h3 className="mb-6 text-xl font-bold">{title}</h3>
       <div className="flex flex-col gap-6">
         {items.map((item, index) => {
           return (
-            <div className="flex" key={index}>
-              <div className="mr-8 max-w-[100px] w-full text-slate-400 dark:text-slate-400">
+            <div className="flex flex-col md:flex-row text-lg" key={index}>
+              <div className="mr-8 md:max-w-[150px] w-full text-slate-400 dark:text-slate-400">
                 {item.date}
               </div>
               <div className="flex flex-col flex-1">
-                <h4>{item.title}</h4>
+                <h4 className="font-bold">{item.title}</h4>
+                {item.company ? (
                 <p className="text-slate-600 dark:text-gray-400">
-                  {item.subTitle}
+                  {item.company}
                 </p>
+                ): null}
                 {item.description ? (
-                  <p className="text-slate-600 dark:text-gray-400 mt-2">
-                    {item.description}
-                  </p>
-                ) : null}
+                <p className="text-slate-600 dark:text-gray-400">
+                  {item.description}
+                </p>
+                ): null}
+                {item.goals ? (
+                  <ul>
+                    {item.goals.map((val, index)=>
+                      <li className="text-slate-600 dark:text-gray-400 mt-2" key={index}>{val}</li>
+                    )}
+                  </ul>
+                ): null }
+                {item.technologies ? (
+                <p className="text-slate-600 dark:text-gray-400">
+                  <strong>Technologies: </strong> {item.technologies}
+                </p>
+                ): null}
               </div>
             </div>
           );
@@ -39,24 +53,25 @@ const Content: React.FC<ContentProps> = ({ title, items }) => {
 export default function Home() {
   return (
     <>
-      <main className="max-w-xl mx-auto px-6 py-20 relative min-h-screen font-light">
-        <section className="flex items-center">
+      <main className="max-w-screen-lg mx-auto px-6 py-5 relative min-h-screen font-light" style={{background: '#333'}}>
+        <section className="flex items-center" style={{background: '#3b679be8', borderTopLeftRadius: '70px;', borderBottomLeftRadius: '70px', paddingRight: '10px'}}>
           <Image
             alt="Author"
             src={generalData.avatar}
-            width={80}
-            height={80}
+            width={150}
+            height={150}
             className="rounded-full object-cover"
+            style={{border: "solid 5px #3e73b3"}}
           />
-          <div className="ml-4">
-            <h1 className="mb-0.5 text-xl text-slate-900 dark:text-slate-100">
+          <div className="ml-4 flex-grow">
+            <h1 className="mb-0.5 font-bold text-2xl text-right text-slate-900 dark:text-slate-100">
               {generalData.name}
             </h1>
-            <p className="text-slate-600 dark:text-slate-300 text-sm">
+            <p className="text-slate-600 text-right dark:text-slate-300 text-sm">
               {generalData.jobTitle}
             </p>
             {generalData.website ? (
-              <span className="text-sm text-slate-400 dark:text-slate-400">
+              <p className="text-sm text-right text-slate-400 dark:text-slate-400">
                 <a
                   href={generalData.website}
                   target="_blank"
@@ -67,21 +82,32 @@ export default function Home() {
                     .replace(/(^\w+:|^)\/\//, "")
                     .replace("www.", "")}
                 </a>
-              </span>
+              </p>
             ) : null}
+            <br/>
+            <p className="text-sm text-right"><a href="mailto:fmanuelm2012@gmail.com">fmanuelm2012@gmail.com</a></p>
+            <p className="text-sm text-right"><a href="tel:+573207680938">57 320 768-0938</a></p>
           </div>
         </section>
-        <section className="my-9 text-sm">
-          <h3 className="mb-1 text-slate-900 dark:text-slate-100">About</h3>
+        <section className="my-9 text-lg">
           <div className="text-slate-600 dark:text-slate-300">
-            <p>{generalData.about}</p>
+            <p className="text-justify">{generalData.about}</p>
           </div>
         </section>
+        <hr style={{border: "1px solid #4b4b4b"}}></hr>
+        <h3 className="mb-7 mt-7 text-xl font-bold">Summary of Qualifications</h3>
+        <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+          {
+            Qualifications.map((qualify, index)=> (<li className="" key={index}>{qualify}</li>))
+          }
+        </ul>
+        <hr className="mt-7" style={{border: "1px solid #4b4b4b"}}></hr>
         {contentData.map((content, index) => {
           return <Content {...content} key={index} />;
         })}
+        <hr style={{border: "1px solid #4b4b4b"}}></hr>
         <section className="my-14 text-sm">
-          <h3 className="mb-6 text-slate-900">Contact</h3>
+          <h3 className="mb-6 text-xl font-bold">Contacts</h3>
           <div className="flex flex-col gap-6">
             {generalData.contacts.map((contact, index) => {
               return (
@@ -116,9 +142,6 @@ export default function Home() {
             })}
           </div>
         </section>
-        <div className="px-6 absolute left-0 bottom-6">
-          <ThemeSwitch />
-        </div>
       </main>
     </>
   );

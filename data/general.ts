@@ -1,30 +1,30 @@
 export const generalData = {
-  name: "John Doe",
-  avatar: "https://github.com/ibelick.png",
-  jobTitle: "Senior Front-End Developer",
-  website: "https://www.julienthibeaut.xyz",
+  name: "Felix Manuel Montero Ramos",
+  avatar: "/images/foto1.jpg",
+  jobTitle: "Senior Full-Stack Developer",
+  website: "https://www.tamikha.com",
   about:
-    "Hey there! I'm John, a senior front-end developer with 10 years of experience in web development.",
+    "A Fullstack Developer with extensive experience in building web applications. Over the past several years, he has successfully developed projects for various clients as a freelancer, utilizing technologies such as Node.js, Laravel, Angular, Vue and React. With a strong focus on frontend development, has honed his skills in creating dynamic and intuitive user interfaces. His creative approach to problem-solving and innovation has enabled him to take on leadership roles, including leading a project team to successful delivery.",
   contacts: [
     {
-      label: "Email",
-      value: "john.doe@gmail.com",
-      href: "mailto:john.doe@gmail.com",
-    },
-    {
-      label: "Twitter",
-      value: "ibelick",
-      href: "https://twitter.com/ibelick",
-    },
-    {
       label: "Github",
-      value: "ibelick",
-      href: "https://github.com/ibelick",
+      value: "fmanuelm",
+      href: "https://github.com/fmanuelm",
     },
     {
-      label: "Read.CV",
-      value: "ibelick",
-      href: "https://read.cv/ibelick",
+      label: "Youtube",
+      value: "loprogramo",
+      href: "https://www.youtube.com/@loprogramo",
+    },
+    {
+      label: "Linkedin",
+      value: "felix-manuel",
+      href: "https://www.linkedin.com/in/felix-manuel-montero-ramos/",
+    },
+    {
+      label: "Website",
+      value: "Agency",
+      href: "https://www.tamikha.com",
     },
   ],
 };
