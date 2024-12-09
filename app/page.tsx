@@ -142,6 +142,9 @@ export default function Home() {
             })}
           </div>
         </section>
+        <div className="px-6 absolute left-0 bottom-6" style={{display: "none"}}>
+          <ThemeSwitch />
+        </div>
       </main>
     </>
   );
